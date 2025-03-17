@@ -34,6 +34,6 @@ num_parts = 50
 output_7z = "merged_image.7z"
 output_dir = "extracted_images"
 
-# if merge_split_files(split_prefix, num_parts, output_7z):
-# extract_7z(output_7z, output_dir)
-extract_7z("WebQA_imgs_7z_chunks/imgs.7z.001", "test")
+if merge_split_files(split_prefix, num_parts, output_7z):
+    extract_7z(output_7z, output_dir)
+# extract_7z("WebQA_imgs_7z_chunks/imgs.7z.001", "test")
