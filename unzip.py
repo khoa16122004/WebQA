@@ -29,7 +29,7 @@ def extract_7z(archive_path, output_dir):
         archive.extractall(path=output_dir)
     print(f"Giải nén thành công vào: {output_dir}")
 
-split_prefix = "imgs"
+split_prefix = "WebQA_imgs_7z_chunks/imgs"
 num_parts = 50 
 output_7z = "merged_image.7z"
 output_dir = "extracted_images"
