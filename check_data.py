@@ -18,7 +18,7 @@ for guid in samples:
 
     img_ids = img_posFacts + img_negFacts
     for id_ in img_ids:
-        path = os.path.join(imgs_dir, id_)
+        path = os.path.join(imgs_dir, "{id_}.png")
         if not os.path.exists(path):
             print(f"Missing image: {id_}")
 
