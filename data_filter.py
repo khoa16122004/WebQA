@@ -20,9 +20,9 @@ for key, item in tqdm(data.items(), desc="Processing annotations"):
         try:
             img_name_dict[img_id]
             Success.append(key)
-            print("append")
+            # print("append")
         except:
-            print("not append")
+            # print("not append")
             continue
         
         input()
