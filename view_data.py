@@ -3,6 +3,10 @@ import json
 import random
 
 def view_data(sample):
+    
+    print("Question: ", sample["Q"])
+    print("Answer: ", sample['A'])
+    
     img_posFacts = sample['img_posFacts']
     img_negFacts = sample['img_negFacts']
     txt_posFacts = sample['txt_posFacts']
