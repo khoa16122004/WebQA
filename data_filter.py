@@ -12,8 +12,8 @@ with open(annotation_path, "r") as f:
 
 Success = []
 for key, item in tqdm(data.items(), desc="Processing annotations"):
-    img_posFacts = item['img_posFacts']
-    img_negFacts = item['img_negFacts']
+    img_posFacts = [img['image_id'] for img in item['img_posFacts']]
+    img_negFacts = [img['image_id'] for img in item['img_negFacts']]
 
     if not all(img in img_name_list for img in img_posFacts + img_negFacts):
         Success.append(key)
