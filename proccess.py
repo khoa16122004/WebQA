@@ -4,7 +4,7 @@ from PIL import Image
 from io import BytesIO
 from tqdm import tqdm
 
-tsv_path = "imgs.tsv"
+tsv_path = "extracted_images/imgs.tsv"
 output_dir = "images"
 
 with open(tsv_path, "r") as tsv_file:
