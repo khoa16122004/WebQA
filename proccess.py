@@ -16,7 +16,7 @@ for i in tqdm(range(len(data))):
     imgid, img_base64 = data[i]
     try:
         img_path = os.path.join(output_dir, f"{imgid}.png")
-        if os.path.exists(img_path):
+        if not os.path.exists(img_path):
             im = Image.open(BytesIO(base64.b64decode(img_base64))).convert("RGB")
             im.save(img_path)
     except:
