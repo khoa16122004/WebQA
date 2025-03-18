@@ -40,5 +40,8 @@ def main():
             sample_id = random.randint(0, len(data))
             sample_key = keys[sample_id]
             view_data(data[sample_key])
+            
+if __name__ == "__main__":
+    main()
     
     
