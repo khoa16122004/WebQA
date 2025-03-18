@@ -15,8 +15,17 @@ for key, item in tqdm(data.items(), desc="Processing annotations"):
     img_posFacts = [img['image_id'] for img in item['img_posFacts']]
     img_negFacts = [img['image_id'] for img in item['img_negFacts']]
     img_ids = img_posFacts + img_negFacts
-    if all(img in img_name_list for img in img_ids):
-        Success.append(key)
+    print(img_ids)
+    for img_id in img_ids:
+        try:
+            img_name_dict[img_id]
+            Success.append(key)
+            print("append")
+        except:
+            print("not append")
+            continue
+        
+        input()
 
 output_path = "samples.txt"
 with open(output_path, "w") as f:
