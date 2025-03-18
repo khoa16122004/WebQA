@@ -8,7 +8,7 @@ annotation_path = "extracted_images/WebQA_data/WebQA_train_val.json"
 with open(annotation_path, "r") as f:
     data = json.load(f)
 
-with open("sampels.txt", 'r') as f:
+with open("samples.txt", 'r') as f:
     samples = [line.strip() for line in f.readlines()]
 
 for guid in samples:
