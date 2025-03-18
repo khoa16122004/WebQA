@@ -28,7 +28,7 @@ def main():
     path = "extracted_images/WebQA_data/WebQA_train_val.json"
     with open(path, "r") as f:
         data = json.load(f)
-        keys = data.keys()
+        keys = list(data.keys())
 
     while True:
         print("----------------------------------- Done -----------------------------")
