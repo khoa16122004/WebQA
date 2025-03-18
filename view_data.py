@@ -30,6 +30,10 @@ def view_data(sample):
         
 def main():
     path = "extracted_images/WebQA_data/WebQA_train_val.json"
+    sample_path = "samples.txt"
+    with open(sample_path) as g:
+        sample_guids = [line.strip() for line in g.readlines()]
+        
     with open(path, "r") as f:
         data = json.load(f)
         keys = list(data.keys())
@@ -41,9 +45,8 @@ def main():
             print("Done")
         
         else:
-            sample_id = random.randint(0, len(data))
-            sample_key = keys[sample_id]
-            view_data(data[sample_key])
+            sampel_guid = random.choice(sample_guids)
+            view_data(data[sampel_guid])
             
 if __name__ == "__main__":
     main()
