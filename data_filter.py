@@ -15,10 +15,10 @@ for key, item in tqdm(data.items(), desc="Processing annotations"):
     img_posFacts = [img['image_id'] for img in item['img_posFacts']]
     img_negFacts = [img['image_id'] for img in item['img_negFacts']]
 
-    if not all(img in img_name_list for img in img_posFacts + img_negFacts):
+    if all(img in img_name_list for img in img_posFacts + img_negFacts):
         Success.append(key)
 
-output_path = "missing_images.txt"
+output_path = "samples.txt"
 with open(output_path, "w") as f:
     f.write("\n".join(Success))
 
