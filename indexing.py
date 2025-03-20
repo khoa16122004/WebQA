@@ -26,10 +26,10 @@ class VectorDB:
         if txt_index_path:
             self.text_index = faiss.read_index(txt_index_path)
     
-    def faiss_add(self, feautures):
-        feature_dim = feautures.shape[1]
+    def faiss_add(self, features):
+        feature_dim = features.shape[1]
         index = faiss.IndexFlatIP(feature_dim)
-        
+        print(features.shape)
         if not index.is_trained:
             print("Faiss is not trained")
             
