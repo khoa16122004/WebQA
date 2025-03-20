@@ -37,6 +37,7 @@ class VectorDB:
             print("Store vector proccessing")
             
             for feature_vector in tqdm(feautures):
+                print(feature_vector.shape)
                 index.add(feature_vector)
                 
         return index
@@ -68,6 +69,7 @@ class VectorDB:
         print("Preproccess image: ")
         for img_path in img_paths:
             img = Image.open(img_path).convert("RGB")
+
             # img = cv.imread(img_path)
             # img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
             # img = Image.fromarray(img)
