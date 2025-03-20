@@ -55,7 +55,7 @@ class VectorDB:
             return index
 
         
-    def search(self, question_query, k=1):
+    def search(self, question_query, k=3):
         question_encode = clip.tokenize(question_query).cuda()
         query_feature = self.model.encode_text(question_encode).to(torch.float32).cpu()
         
