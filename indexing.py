@@ -103,7 +103,7 @@ class VectorDB:
         
     def indexing_text(self, samples_path, annotation_path, output_path, batch_size=128):
         with open(samples_path) as f, open(annotation_path) as g:
-            samples = [line.strip() for line in f.readlines()]
+            samples = [line.strip() for line in f.readlines()][:5]
             annotations = json.load(g)
             
             txt_features = []
