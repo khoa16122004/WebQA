@@ -91,7 +91,7 @@ class VectorDB:
                     
                 imgs_features = self.model.encode_image(imgs_batch)
                 img_features.append(imgs_features)
-        print(img_features.shape)
+        print(img_features[0].shape)
         img_features = torch.stack(img_features)
         print(img_features.shape)
 
