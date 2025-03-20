@@ -28,7 +28,7 @@ class VectorDB:
     
     def faiss_add(self, features):
         feature_dim = features.shape[1]
-        index = faiss.IndexFlatIP(feature_dim)
+        index = faiss.GpuIndexFlatIP(feature_dim)
         # print(features.shape)
         if not index.is_trained:
             raise RuntimeError("Faiss is not trained")
@@ -88,7 +88,7 @@ class VectorDB:
                 img_features.append(imgs_features)
         img_features = torch.cat(img_features, dim=0)
         img_features = img_features / img_features.norm(dim=-1, keepdim=True)
-        img_features = img_features.cpu().numpy().astype(np.float32)
+        # img_features = img_features.cpu().numpy().astype(np.float32)
         print(type(img_features))
         
         # add index
