@@ -13,8 +13,7 @@ with open(annotation_path, "r") as f:
 Success = []
 for key, item in tqdm(data.items(), desc="Processing annotations"):
     img_posFacts = [img['image_id'] for img in item['img_posFacts']]
-    img_negFacts = [img['image_id'] for img in item['img_negFacts']]
-    img_ids = img_posFacts + img_negFacts
+    
     for img_id in img_posFacts:
         
         try:
