@@ -26,8 +26,10 @@ class VectorDB:
             self.image_df = pd.read_csv(image_sample_path)
             
         if image_index_path:
+            res = faiss.StandardGpuResources()
+
             self.image_index = faiss.read_index(image_index_path)
-            self.image_index = faiss.index_cpu_to_gpu(faiss.StandardGpuResources(),
+            self.image_index = faiss.index_cpu_to_gpu(res,
                                                       "cuda",
                                                       self.image_index)
             print("Image vectors db len: ", self.image_index.ntotal)
