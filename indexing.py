@@ -165,11 +165,11 @@ if __name__ == "__main__":
     #               txt_index_path=None,
     #               image_index_path="img_vector_db.faiss")
     
-    while True:
-        question = "bear boltle"
-        # result_img, result_txt = db.search(question)
-        result_img = db.search(question)
-        print(result_img)
-        input("Next")
-        break
+    # while True:
+    #     question = "bear boltle"
+    #     # result_img, result_txt = db.search(question)
+    #     result_img = db.search(question)
+    #     print(result_img)
+    #     input("Next")
+    #     break
     
