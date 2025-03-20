@@ -164,7 +164,7 @@ if __name__ == "__main__":
                   image_index_path="img_vector_db.faiss")
     
     while True:
-        question = "a snack"
+        question = "a large bulding with many trees"
         # result_img, result_txt = db.search(question)
         result_img = db.search(question)
         print(result_img)
