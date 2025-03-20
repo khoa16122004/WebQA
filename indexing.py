@@ -75,7 +75,7 @@ class VectorDB:
         # when retreieval: img_paths[index] -> img_path
         imgs = []
         imgs_name = sorted(os.listdir(img_dir))
-        img_paths = [os.path.join(img_dir, img_name) for img_name in imgs_name]
+        img_paths = [os.path.join(img_dir, img_name) for img_name in imgs_name][:5]
         print("Len Image Database: ", len(img_paths))
 
         print("Preproccess image: ")
@@ -154,19 +154,19 @@ class VectorDB:
                 
                 
 if __name__ == "__main__":
-    # db = VectorDB()
-    # db.indexing_image(img_dir='images',
-    #                   output_path="img_vector_db.faiss",)
+    db = VectorDB()
+    db.indexing_image(img_dir='images',
+                      output_path="img_vector_db.faiss",)
     
-    db = VectorDB(txt_sample_path=None,
-                  image_sample_path="image_df.csv",
-                  txt_index_path=None,
-                  image_index_path="img_vector_db.faiss")
+    # db = VectorDB(txt_sample_path=None,
+    #               image_sample_path="image_df.csv",
+    #               txt_index_path=None,
+    #               image_index_path="img_vector_db.faiss")
     
-    while True:
-        question = "a snack"
-        result_img, result_txt = db.search(question)
-        print(result_img, result_txt)
-        input("Next")
-        break
+    # while True:
+    #     question = "a snack"
+    #     result_img, result_txt = db.search(question)
+    #     print(result_img, result_txt)
+    #     input("Next")
+    #     break
     
