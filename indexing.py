@@ -62,18 +62,12 @@ class VectorDB:
         imgs = []
         imgs_name = sorted(os.listdir(img_dir))
         img_paths = [os.path.join(img_dir, img_name) for img_name in imgs_name]
-        print("Preproccessing: ", self.preprocess)
         print("Len Image Database: ", len(img_paths))
 
         print("Preproccess image: ")
         for img_path in img_paths:
             img = Image.open(img_path).convert("RGB")
 
-            # img = cv.imread(img_path)
-            # img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
-            # img = Image.fromarray(img)
-
-            # img.save("test.png")
             imgs.append(self.preprocess(img))
             break
         imgs = torch.stack(imgs).cuda()
