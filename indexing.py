@@ -27,10 +27,11 @@ class VectorDB:
             
         if image_index_path:
             self.image_index = faiss.read_index(image_index_path)
-        
+            print("Image vectors db len: ", self.image_index.ntotal)
         if txt_index_path:
             self.text_index = faiss.read_index(txt_index_path)
-    
+            print("Text vectors db len: ", self.text_index.ntotal)
+
     def faiss_add(self, features):
         feature_dim = features.shape[1]
         index = faiss.GpuIndexFlatIP(faiss.StandardGpuResources(),
@@ -54,12 +55,13 @@ class VectorDB:
         query_feature = self.model.encode_text(question_encode)
         
         D_img, I_txt = self.image_index.search(query_feature, k)
-        D_txt, I_txt = self.text_index.search(query_feature, k)
+        # D_txt, I_txt = self.text_index.search(query_feature, k)
         
         result_img = self.image_df.iloc[I_txt]
-        result_txt = self.txt_df.iloc[I_txt]
+        # result_txt = self.txt_df.iloc[I_txt]
         
-        return result_img, result_txt
+        # return result_img, result_txt
+        return result_img
     
 
     
@@ -156,5 +158,9 @@ if __name__ == "__main__":
                   image_sample_path="image_df.csv",
                   txt_index_path=None,
                   image_index_path="img_vector_db.faiss")
+    
+    question = "a snack"
+    result_img, result_txt = db.search(question)
+    print(result_img, result_txt)
     
     
