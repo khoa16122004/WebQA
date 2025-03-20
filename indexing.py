@@ -37,7 +37,7 @@ class VectorDB:
             print("Store vector proccessing")
             
             for feature_vector in tqdm(features):
-                index.add(feature_vector.squeeze(0))
+                index.add(feature_vector)
             # print(type(features))
             # index.add(features)    
             return index
