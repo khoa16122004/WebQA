@@ -59,10 +59,10 @@ class VectorDB:
         question_encode = clip.tokenize(question_query).cuda()
         query_feature = self.model.encode_text(question_encode).to(torch.float32).cpu()
         
-        D_img, I_txt = self.image_index.search(query_feature, k)
+        D_img, I_img = self.image_index.search(query_feature, k)
         # D_txt, I_txt = self.text_index.search(query_feature, k)
-        
-        result_img = self.image_df.iloc[I_txt]
+        print(I_img)
+        result_img = self.image_df.iloc[I_img]
         # result_txt = self.txt_df.iloc[I_txt]
         
         # return result_img, result_txt
