@@ -99,7 +99,7 @@ class VectorDB:
                 imgs_features = self.model.encode_image(imgs_batch)
                 img_features.append(imgs_features)
         img_features = torch.cat(img_features, dim=0)
-        img_features = img_features / img_features.norm(dim=-1, keepdim=True).to(torch.float32)
+        img_features = img_features / img_features.norm(dim=-1, keepdim=True).to(torch.float32).cpu()
         
         # add index
         index = self.faiss_add(img_features)
@@ -154,19 +154,19 @@ class VectorDB:
                 
                 
 if __name__ == "__main__":
-    db = VectorDB()
-    db.indexing_image(img_dir='images',
-                      output_path="img_vector_db.faiss",)
+    # db = VectorDB()
+    # db.indexing_image(img_dir='images',
+    #                   output_path="img_vector_db.faiss",)
     
-    # db = VectorDB(txt_sample_path=None,
-    #               image_sample_path="image_df.csv",
-    #               txt_index_path=None,
-    #               image_index_path="img_vector_db.faiss")
+    db = VectorDB(txt_sample_path=None,
+                  image_sample_path="image_df.csv",
+                  txt_index_path=None,
+                  image_index_path="img_vector_db.faiss")
     
-    # while True:
-    #     question = "a snack"
-    #     result_img, result_txt = db.search(question)
-    #     print(result_img, result_txt)
-    #     input("Next")
-    #     break
+    while True:
+        question = "a snack"
+        result_img, result_txt = db.search(question)
+        print(result_img, result_txt)
+        input("Next")
+        break
     
