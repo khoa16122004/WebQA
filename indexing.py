@@ -31,15 +31,16 @@ class VectorDB:
         index = faiss.IndexFlatIP(feature_dim)
         print(features.shape)
         if not index.is_trained:
-            print("Faiss is not trained")
+            raise RuntimeError("Faiss is not trained")
             
         else:
             print("Store vector proccessing")
             
             # for feature_vector in tqdm(feautures):
             #     index.add(feature_vector.squeeze(0))
+            print(type(features))
             index.add(features)    
-        return index
+            return index
 
         
     def search(self, question_query, k):
