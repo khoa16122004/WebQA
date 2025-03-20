@@ -38,7 +38,7 @@ class VectorDB:
             
             # for feature_vector in tqdm(feautures):
             #     index.add(feature_vector.squeeze(0))
-            index.add(feautures)    
+            index.add(features)    
         return index
 
         
