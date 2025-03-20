@@ -30,8 +30,7 @@ class VectorDB:
     def faiss_add(self, features):
         feature_dim = features.shape[1]
         index = faiss.GpuIndexFlatIP(faiss.StandardGpuResources(),
-                                     faiss.Clustering(feature_dim, 384),
-                                     faiss.GpuIndexFlatConfig())
+                                     feature_dim)
         # print(features.shape)
         if not index.is_trained:
             raise RuntimeError("Faiss is not trained")
