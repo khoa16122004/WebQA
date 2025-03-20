@@ -17,6 +17,7 @@ for key, item in tqdm(data.items(), desc="Processing annotations"):
     img_ids = img_posFacts + img_negFacts
     print(img_ids)
     for img_id in img_ids:
+        
         try:
             img_name_dict[img_id]
             Success.append(key)
