@@ -64,7 +64,8 @@ class VectorDB:
         img_paths = [os.path.join(img_dir, img_name) for img_name in imgs_name]
         print("Preproccessing: ", self.preprocess)
         print("Len Image Database: ", len(img_paths))
-        # print(self.preprocess)
+
+        print("Preproccess image: ")
         for img_path in img_paths:
             img = Image.open(img_path).convert("RGB")
             # img = cv.imread(img_path)
@@ -76,6 +77,8 @@ class VectorDB:
             break
         imgs = torch.stack(imgs).cuda()
         
+        print("Extract features of image:  ")
+
         # CLIP preprocess
         img_features = []
         with torch.no_grad():
