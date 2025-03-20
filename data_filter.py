@@ -19,7 +19,7 @@ for key, item in tqdm(data.items(), desc="Processing annotations"):
     for img_id in img_ids:
         
         try:
-            img_name_dict[img_id]
+            img_name_dict[str(img_id)]
             Success.append(key)
             # print("append")
         except:
