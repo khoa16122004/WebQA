@@ -52,7 +52,7 @@ class VectorDB:
         
     def search(self, question_query, k=1):
         question_encode = clip.tokenize(question_query).cuda()
-        query_feature = self.model.encode_text(question_encode).to(torch.float332)
+        query_feature = self.model.encode_text(question_encode).to(torch.float32)
         
         D_img, I_txt = self.image_index.search(query_feature, k)
         # D_txt, I_txt = self.text_index.search(query_feature, k)
