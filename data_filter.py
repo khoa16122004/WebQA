@@ -15,8 +15,7 @@ for key, item in tqdm(data.items(), desc="Processing annotations"):
     img_posFacts = [img['image_id'] for img in item['img_posFacts']]
     img_negFacts = [img['image_id'] for img in item['img_negFacts']]
     img_ids = img_posFacts + img_negFacts
-    print(img_ids)
-    for img_id in img_ids:
+    for img_id in img_posFacts:
         
         try:
             img_name_dict[str(img_id)]
