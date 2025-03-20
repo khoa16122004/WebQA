@@ -33,7 +33,8 @@ def main():
     sample_path = "samples.txt"
     with open(sample_path) as g:
         sample_guids = [line.strip() for line in g.readlines()]
-        
+    
+    print("Len samples: ", len(sample_guids))
     with open(path, "r") as f:
         data = json.load(f)
         keys = list(data.keys())
