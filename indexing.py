@@ -64,8 +64,8 @@ class VectorDB:
         print("Len Image Database: ", len(img_paths))
         # print(self.preprocess)
         for img_path in img_paths:
-            print(img)
             img = Image.open(img_path)
+            print(img)
             imgs.append(self.preprocess(img))
         
         imgs = torch.stack(imgs).cuda()
