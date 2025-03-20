@@ -27,6 +27,7 @@ class VectorDB:
             
         if image_index_path:
             self.image_index = faiss.read_index(image_index_path)
+            self.image_index = faiss.index_gpu_to_cpu(self.image_index)
             print("Image vectors db len: ", self.image_index.ntotal)
         if txt_index_path:
             self.text_index = faiss.read_index(txt_index_path)
@@ -159,8 +160,10 @@ if __name__ == "__main__":
                   txt_index_path=None,
                   image_index_path="img_vector_db.faiss")
     
-    question = "a snack"
-    result_img, result_txt = db.search(question)
-    print(result_img, result_txt)
-    
+    while True:
+        question = "a snack"
+        result_img, result_txt = db.search(question)
+        print(result_img, result_txt)
+        input("Next")
+        break
     
