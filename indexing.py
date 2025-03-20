@@ -103,7 +103,6 @@ class VectorDB:
         
         # add index
         index = self.faiss_add(img_features)
-        index = faiss.index_gpu_to_cpu(index)
         
         # save index        
         faiss.write_index(index, output_path)
@@ -138,30 +137,33 @@ class VectorDB:
                     else:
                         tokenized_text_batch = tokenized_text[i:]
                     text_features = self.model.encode_text(tokenized_text_batch)
-                    text_features = text_features / text_features.norm(dim=-1, keepdim=True)
                     txt_features.append(text_features)
-            txt_features = torch.stack(txt_features)
+            txt_features = torch.cat(txt_features).cpu()
+            txt_features = txt_features / txt_features.norm(dim=-1, keepdim=True).to(torch.float32).cpu()
 
             # add index
             index = self.faiss_add(txt_features)
             
             # save index        
             faiss.write_index(index, output_path)
-
-            # save txt samples:
-            self.image_df = pd.DataFrame({'index': range(len(txt_snippet_ids)),
+            txt_df = pd.DataFrame({'index': range(len(txt_snippet_ids)),
                                           "snniped_id": txt_snippet_ids})
-                
+            txt_df.to_csv("txt_df.csv", index=False)
                 
 if __name__ == "__main__":
-    # db = VectorDB()
-    # db.indexing_image(img_dir='images',
-    #                   output_path="img_vector_db.faiss",)
+    db = VectorDB()
+    db.indexing_image(img_dir='images',
+                      output_path="img_vector_db.faiss")
     
-    db = VectorDB(txt_sample_path=None,
-                  image_sample_path="image_df.csv",
-                  txt_index_path=None,
-                  image_index_path="img_vector_db.faiss")
+    # db.indexing_image(samples_path='samples.txt',
+    #                   annotation_path="extracted_images/WebQA_data/WebQA_train_val.json",
+    #                   output_path=""
+    #                   )
+    
+    # db = VectorDB(txt_sample_path=None,
+    #               image_sample_path="image_df.csv",
+    #               txt_index_path=None,
+    #               image_index_path="img_vector_db.faiss")
     
     while True:
         question = "bear boltle"
