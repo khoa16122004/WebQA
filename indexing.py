@@ -12,7 +12,11 @@ import cv2 as cv
 import faiss.contrib.torch_utils
 
 class VectorDB:
-    def __init__(self, txt_sample_path=None, image_sample_path=None, txt_index_path=None ,image_index_path=None, model_name='ViT-B/32'):
+    def __init__(self, txt_sample_path=None, 
+                 image_sample_path=None,
+                 txt_index_path=None ,
+                 image_index_path=None,
+                 model_name='ViT-B/32'):
         self.model, self.preprocess = clip.load(model_name, device="cuda")
 
         if txt_sample_path:
@@ -45,7 +49,7 @@ class VectorDB:
             return index
 
         
-    def search(self, question_query, k):
+    def search(self, question_query, k=1):
         question_encode = clip.tokenize(question_query).cuda()
         query_feature = self.model.encode_text(question_encode)
         
@@ -144,6 +148,13 @@ class VectorDB:
                 
                 
 if __name__ == "__main__":
-    db = VectorDB()
-    db.indexing_image(img_dir='images',
-                      output_path="img_vector_db.faiss",)
+    # db = VectorDB()
+    # db.indexing_image(img_dir='images',
+    #                   output_path="img_vector_db.faiss",)
+    
+    db = VectorDB(txt_sample_path=None,
+                  image_sample_path="image_df.csv",
+                  txt_index_path=None,
+                  image_index_path="img_vector_db.faiss")
+    
+    
