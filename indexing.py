@@ -29,17 +29,17 @@ class VectorDB:
     def faiss_add(self, features):
         feature_dim = features.shape[1]
         index = faiss.IndexFlatIP(feature_dim)
-        print(features.shape)
+        # print(features.shape)
         if not index.is_trained:
             raise RuntimeError("Faiss is not trained")
             
         else:
             print("Store vector proccessing")
             
-            for feature_vector in tqdm(features):
-                index.add(feature_vector)
+            # for feature_vector in tqdm(features):
+                # index.add(feature_vector)
             # print(type(features))
-            # index.add(features)    
+            index.add(features)    
             return index
 
         
