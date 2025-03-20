@@ -9,6 +9,7 @@ import os
 import json
 from torchvision import transforms
 import cv2 as cv
+import faiss.contrib.torch_utils
 
 class VectorDB:
     def __init__(self, txt_sample_path=None, image_sample_path=None, txt_index_path=None ,image_index_path=None, model_name='ViT-B/32'):
