@@ -89,7 +89,7 @@ class VectorDB:
                 imgs_features = self.model.encode_image(imgs_batch)
                 img_features.append(imgs_features)
         img_features = torch.cat(img_features, dim=0)
-        img_features = img_features / img_features.norm(dim=-1, keepdim=True)
+        img_features = img_features / img_features.norm(dim=-1, keepdim=True).to(torch.float32)
         # img_features = img_features.cpu().numpy().astype(np.float32)
         print(type(img_features))
         
