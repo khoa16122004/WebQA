@@ -62,7 +62,7 @@ class VectorDB:
         # D_txt, I_txt = self.text_index.search(query_feature, k)
         I_img = I_img[0].tolist()
 
-        result_img = self.image_df.iloc[self.image_df.iloc['index'].isin([0, 3, 4])]
+        result_img = self.image_df[self.image_df['index'].isin(I_img)]
         # result_txt = self.txt_df.iloc[I_txt]
         
         # return result_img, result_txt
