@@ -7,6 +7,7 @@ from tqdm import tqdm
 from PIL import Image
 import os
 import json
+from torchvision.utils import transforms
 
 class VectorDB:
     def __init__(self, txt_sample_path=None, image_sample_path=None, txt_index_path=None ,image_index_path=None, model_name='ViT-B/32'):
@@ -65,6 +66,7 @@ class VectorDB:
         # print(self.preprocess)
         for img_path in img_paths:
             img = Image.open(img_path).convert("RGB")
+            transforms.ToTensor()(img)
             print(img.mode, img.size)
 
             # img.save("test.png")
