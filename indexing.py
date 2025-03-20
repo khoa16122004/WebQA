@@ -92,11 +92,10 @@ class VectorDB:
                 imgs_features = self.model.encode_image(imgs_batch)
                 img_features.append(imgs_features)
         img_features = torch.cat(img_features, dim=0)
-
         img_features = img_features / img_features.norm(dim=-1, keepdim=True)
 
         # add index
-        index = self.faiss_add(img_features)
+        index = self.faiss_add(img_features.cpu().numpy())
         
         # save index        
         faiss.write_index(index, output_path)
