@@ -27,7 +27,9 @@ class VectorDB:
             
         if image_index_path:
             self.image_index = faiss.read_index(image_index_path)
-            self.image_index = faiss.index_cpu_to_gpu("cuda", self.image_index)
+            self.image_index = faiss.index_cpu_to_gpu(faiss.StandardGpuResources(),
+                                                      "cuda",
+                                                      self.image_index)
             print("Image vectors db len: ", self.image_index.ntotal)
         if txt_index_path:
             self.text_index = faiss.read_index(txt_index_path)
