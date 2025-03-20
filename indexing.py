@@ -101,8 +101,10 @@ class VectorDB:
         faiss.write_index(index, output_path)
         
         # save df pandas
-        self.image_df = pd.DataFrame({'index': range(len(imgs_name)),
+        image_df = pd.DataFrame({'index': range(len(imgs_name)),
                                       "image_id": imgs_name})
+        
+        image_df.to_csv("image_df.csv", index=False)
         
     def indexing_text(self, samples_path, annotation_path, output_path, batch_size=128):
         with open(samples_path) as f, open(annotation_path) as g:
