@@ -60,7 +60,7 @@ class VectorDB:
         imgs = []
         imgs_name = sorted(os.listdir(img_dir))
         img_paths = [os.path.join(img_dir, img_name) for img_name in imgs_name]
-        
+        print("Preproccessing: ", self.preprocess)
         print("Len Image Database: ", len(img_paths))
         # print(self.preprocess)
         for img_path in img_paths:
