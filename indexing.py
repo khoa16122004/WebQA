@@ -29,9 +29,9 @@ class VectorDB:
             res = faiss.StandardGpuResources()
 
             self.image_index = faiss.read_index(image_index_path)
-            self.image_index = faiss.index_cpu_to_gpu(res,
-                                                      "0",
-                                                      self.image_index)
+            # self.image_index = faiss.index_cpu_to_gpu(res,
+            #                                           "0",
+            #                                           self.image_index)
             print("Image vectors db len: ", self.image_index.ntotal)
         if txt_index_path:
             self.text_index = faiss.read_index(txt_index_path)
@@ -57,7 +57,7 @@ class VectorDB:
         
     def search(self, question_query, k=1):
         question_encode = clip.tokenize(question_query).cuda()
-        query_feature = self.model.encode_text(question_encode).to(torch.float32)
+        query_feature = self.model.encode_text(question_encode).to(torch.float32).cpu()
         
         D_img, I_txt = self.image_index.search(query_feature, k)
         # D_txt, I_txt = self.text_index.search(query_feature, k)
