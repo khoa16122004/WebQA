@@ -26,7 +26,7 @@ for key, item in tqdm(data.items(), desc="Processing annotations"):
             # print("not append")
             continue
         
-        input()
+        # input()
 
 output_path = "samples.txt"
 with open(output_path, "w") as f:
