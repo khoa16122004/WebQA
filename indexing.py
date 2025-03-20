@@ -64,7 +64,7 @@ class VectorDB:
         print("Len Image Database: ", len(img_paths))
         # print(self.preprocess)
         for img_path in img_paths:
-            img = Image.open(img_path)
+            img = Image.open(img_path).convert('RGB')
             # img.save("test.png")
             print(type(img))
             imgs.append(self.preprocess(img))
