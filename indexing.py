@@ -95,6 +95,7 @@ class VectorDB:
         
         # add index
         index = self.faiss_add(img_features)
+        index = faiss.index_gpu_to_cpu(index)
         
         # save index        
         faiss.write_index(index, output_path)
