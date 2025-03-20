@@ -66,11 +66,11 @@ class VectorDB:
         print("Len Image Database: ", len(img_paths))
         # print(self.preprocess)
         for img_path in img_paths:
-            # img = Image.open(img_path).convert("RGB")
-            # transforms.ToTensor()(img)
-            img = cv.imread(img_path)
-            img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
-            img = Image.fromarray(img)
+            img = Image.open(img_path).convert("RGB")
+            transforms.ToTensor()(img)
+            # img = cv.imread(img_path)
+            # img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
+            # img = Image.fromarray(img)
             img.save("test.png")
             print(img.mode, img.size)
 
