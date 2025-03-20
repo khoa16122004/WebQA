@@ -24,7 +24,6 @@ class VectorDB:
         
         if image_sample_path:
             self.image_df = pd.read_csv(image_sample_path)
-            
         if image_index_path:
             res = faiss.StandardGpuResources()
 
@@ -62,8 +61,8 @@ class VectorDB:
         D_img, I_img = self.image_index.search(query_feature, k)
         # D_txt, I_txt = self.text_index.search(query_feature, k)
         I_img = I_img[0].tolist()
-        print(I_img)
-        result_img = self.image_df.iloc[I_img]
+
+        result_img = self.image_df.iloc[self.image_df.iloc['index'].isin([0, 3, 4])]
         # result_txt = self.txt_df.iloc[I_txt]
         
         # return result_img, result_txt
@@ -166,8 +165,9 @@ if __name__ == "__main__":
     
     while True:
         question = "a snack"
-        result_img, result_txt = db.search(question)
-        print(result_img, result_txt)
+        # result_img, result_txt = db.search(question)
+        result_img = db.search(question)
+        print(result_img)
         input("Next")
         break
     
