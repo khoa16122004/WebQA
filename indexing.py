@@ -7,7 +7,7 @@ from tqdm import tqdm
 from PIL import Image
 import os
 import json
-from torchvision.utils import transforms
+from torchvision import transforms
 
 class VectorDB:
     def __init__(self, txt_sample_path=None, image_sample_path=None, txt_index_path=None ,image_index_path=None, model_name='ViT-B/32'):
