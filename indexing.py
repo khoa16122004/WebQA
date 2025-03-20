@@ -90,8 +90,6 @@ class VectorDB:
                 img_features.append(imgs_features)
         img_features = torch.cat(img_features, dim=0)
         img_features = img_features / img_features.norm(dim=-1, keepdim=True).to(torch.float32)
-        # img_features = img_features.cpu().numpy().astype(np.float32)
-        print(type(img_features))
         
         # add index
         index = self.faiss_add(img_features)
@@ -99,11 +97,8 @@ class VectorDB:
         
         # save index        
         faiss.write_index(index, output_path)
-        
-        # save df pandas
         image_df = pd.DataFrame({'index': range(len(imgs_name)),
                                       "image_id": imgs_name})
-        
         image_df.to_csv("image_df.csv", index=False)
         
     def indexing_text(self, samples_path, annotation_path, output_path, batch_size=128):
