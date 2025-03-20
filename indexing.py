@@ -60,9 +60,11 @@ class VectorDB:
         imgs = []
         imgs_name = sorted(os.listdir(img_dir))
         img_paths = [os.path.join(img_dir, img_name) for img_name in imgs_name]
-                
+        
+        print("Len Image Database: ", len(img_paths))
+        
         for img_path in img_paths:
-            img = Image.open(os.path.join(img_dir, img_path))
+            img = Image.open(img_path)
             imgs.append(self.preprocess(img))
         
         imgs = torch.stack(imgs).cuda()
