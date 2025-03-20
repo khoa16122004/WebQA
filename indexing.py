@@ -59,6 +59,7 @@ class VectorDB:
         query_feature = self.model.encode_text(question_encode).to(torch.float32).cpu()
         
         D_img, I_img = self.image_index.search(query_feature, k)
+        print(I_img)
         # D_txt, I_txt = self.text_index.search(query_feature, k)
         I_img = I_img[0].tolist()
 
