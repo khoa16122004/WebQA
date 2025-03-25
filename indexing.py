@@ -84,6 +84,7 @@ class VectorDB:
 
             imgs.append(self.preprocess(img))
         imgs = torch.stack(imgs).cuda()
+        print(imgs.shape)
         
         print("Extract features of image:  ")
 
